@@ -23,12 +23,14 @@ macOS dependencies
 
 # Install
 
-Install from sources
+Install all dependancies, node.js, and node-red
+
+Install node-red-contrib-ccloud from sources
 	
 	cd /tmp	
-	git clone https://github.com/confluentinc/node-red-config-ccloud.git
+	git clone git@github.com:confluentinc/node-red-contrib-ccloud.git
 	cd ~/.node-red	
-	npm install /tmp/ccloud
+	npm install /tmp/node-red-contrib-ccloud
 
 
 Install using npm (*not yet published*)
