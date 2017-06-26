@@ -71,7 +71,7 @@
 </script>
 
 <script type="text/x-red" data-help-name="ccloud out">
-    <p>Connects to a Kafka broker and publishes messages.
+    <p>Connects to Confluent Cloud endpoint and publishes messages.
     <p>If you want to publish Kafka messages in Key,Value format then either specify a static key value in the config dialog or (if blank) include a key string in the incoming <code>msg.key</code> field
     <p>The Kafka topic to which messages are published can be specified as a static topic value in the config dialog or (if blank) included as a topic string in the incoming <code>msg.topic</code> field
     <p>The Kafka partition to which messages are published can be specified as a static partition value in the config dialog or (if set to -1) included as a topic string in the incoming <code>msg.partition</code> field. If no partition is specified via either method then the default (round robin) Kafka partitioner is used.
@@ -119,8 +119,7 @@
     <div class="form-row">
         <label for="node-config-input-sslcaloc"><i class="icon-tag"></i> SSL CA</label>
         <input type="text" id="node-config-input-sslcaloc" placeholder="/usr/local/etc/openssl/cert.pem">
-    </div>
-    </div>    
+    </div>  
     <div class="form-row">
         <label for="node-config-input-clientid"><i class="icon-tag"></i> Client ID</label>
         <input type="text" id="node-config-input-clientid" placeholder="Leave blank for auto generated">

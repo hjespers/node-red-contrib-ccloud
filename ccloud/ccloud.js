@@ -112,6 +112,11 @@ module.exports = function(RED) {
             node.error("missing broker configuration");
         }
         node.on('close', function() {
+            node.status({
+                fill: "red",
+                shape: "ring",
+                text: "disconnected"
+            });            
             consumer.unsubscribe([node.topic]);
             consumer.disconnect();
         });
@@ -127,8 +132,9 @@ module.exports = function(RED) {
         this.brokerConfig = RED.nodes.getNode(this.broker);
         var node = this;
         var producer;
+
         if (node.brokerConfig !== undefined) {
-            this.status({
+            node.status({
                 fill: "red",
                 shape: "ring",
                 text: "disconnected"
@@ -158,8 +164,6 @@ module.exports = function(RED) {
 
                 producer.on('ready', function() {
                     util.log('[ccloud] Confluent Cloud connection is ready');
-                    // this is the main part of this program
-                    // call the REST API in order get login and get the id, vehicle_id, and streaming password token
                     // Wait for the ready event before proceeding
                     node.status({
                         fill: "green",
@@ -173,7 +177,7 @@ module.exports = function(RED) {
                     console.error('[ccloud] Error from producer: ' + err);
                     node.status({
                         fill: "red",
-                        shape: "dot",
+                        shape: "ring",
                         text: "error"
                     });  
                 });
@@ -186,6 +190,7 @@ module.exports = function(RED) {
             this.on("input", function(msg) {
                 //handle different payload types including JSON object
                 var partition, key, topic, value, timestamp;
+
                 //set the partition  
                 if (this.partition && Number.isInteger(this.partition) && this.partition >= 0){
                     partition = this.partition;
@@ -194,28 +199,30 @@ module.exports = function(RED) {
                 } else {
                     partition = -1;
                 }
+
                 //set the key
-                //if ((typeof this.key === 'string') && this.key !== "") {
                 if ( this.key ) {
                     key = this.key;
-                //} else if ((typeof msg.key === 'string') && msg.key !== "") {
                 } else if ( msg.key ) {
                     key = msg.key;
                 } else {
                     key = null;
                 }
+
                 //set the topic
                 if (this.topic === "" && msg.topic !== "") {
                     topic = msg.topic;
                 } else {
                     topic = this.topic;
                 }
+
                 //set the value
                 if( typeof msg.payload === 'object') {
                     value = JSON.stringify(msg.payload);
                 } else {
                     value = msg.payload.toString();
                 }
+
                 //set the timestamp
                 if( (new Date(msg.timestamp)).getTime() > 0 ) {
                     timestamp = msg.timestamp;
@@ -223,9 +230,8 @@ module.exports = function(RED) {
                     console.log('[ccloud] WARNING: Ignoring the following invalid timestamp on message:' + msg.timestamp);    
                 }
      
-                //if (msg === null || (msg.topic === "" && node.topic === "")) {
                 if (value === null || topic === "") {                    
-                    util.log("[ccloud] request to send a NULL message or NULL topic");
+                    util.log("[ccloud] ignored request to send a NULL message or NULL topic");
                 } else {
                     producer.produce(
                       topic,                                // topic
@@ -233,7 +239,7 @@ module.exports = function(RED) {
                       new Buffer(JSON.stringify(value)),    // value
                       key,                                  // key
                       timestamp                             // timestamp
-                    );                    
+                    );        
                 }
             });
         } else {
