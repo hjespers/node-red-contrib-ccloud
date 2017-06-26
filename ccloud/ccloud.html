@@ -1,0 +1,151 @@
+
+
+<script type="text/x-red" data-template-name="ccloud in">
+    <div class="form-row">
+        <label for="node-input-broker"><i class="icon-tag"></i> Cloud Account</label>
+        <input type="text" id="node-input-broker">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-cgroup"><i class="icon-tasks"></i> Group ID</label>
+        <input type="text" id="node-input-cgroup" placeholder="Group ID">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="ccloud in">
+    <p>Kafka input node. Connects to a broker and subscribes to the specified topic. The topic may contain Kafka wildcard regular expression.
+    </script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ccloud in',{
+       category: 'input',
+       defaults: {
+         name: {value:""},
+         topic: {value:"",required:true},
+         cgroup: {value:"node-red-ccloud"},
+         autocommit: {value:true, required:true},
+         broker: {type:"ccloud-broker", required:true}
+       },
+       color:"#FFFFFF",
+       inputs:0,
+       outputs:1,
+       icon: "ccloud.png",
+       label: function() {
+       return this.name||this.topic||"ccloud";
+       },
+       labelStyle: function() {
+       return this.name?"node_label_italic":"";
+       }
+    });
+                           
+</script>
+
+<script type="text/x-red" data-template-name="ccloud out">
+    <div class="form-row">
+        <label for="node-input-broker"><i class="icon-tag"></i> Cloud Account</label>
+        <input type="text" id="node-input-broker">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-key"><i class="icon-tasks"></i> Key</label>
+        <input type="text" id="node-input-key" placeholder="Key">
+    </div>
+        <div class="form-row">
+        <label for="node-input-partition"><i class="icon-tasks"></i> Partition</label>
+        <input type="number" id="node-input-partition" placeholder="Partition">
+    </div>    
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="ccloud out">
+    <p>Connects to a Kafka broker and publishes messages.
+    <p>If you want to publish Kafka messages in Key,Value format then either specify a static key value in the config dialog or (if blank) include a key string in the incoming <code>msg.key</code> field
+    <p>The Kafka topic to which messages are published can be specified as a static topic value in the config dialog or (if blank) included as a topic string in the incoming <code>msg.topic</code> field
+    <p>The Kafka partition to which messages are published can be specified as a static partition value in the config dialog or (if set to -1) included as a topic string in the incoming <code>msg.partition</code> field. If no partition is specified via either method then the default (round robin) Kafka partitioner is used.
+    <p>If you provide a valid timestamp by using the <code>msg.timestamp</code> field it will be added to the message as the event time, otherwise the current publish time will be used.
+    <p>If any values are set in both the configuration window and in the incoming message, then the configuration dialog value has precedence.
+    <p>The output of this node includes key and value schema_id and <code>offsets</code> which is an array of objects containing the partition, offset, error_code, and error for each of the messages published. For example <code>{ offsets: [ { partition: 0, offset: 1071, error_code: null, error: null } ], key_schema_id: null, value_schema_id: null }</code>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ccloud out',{
+       category: 'output',
+       defaults: {
+         name: {value:""},
+         topic: {value:""},
+         key: {value:""},
+         partition: {value:-1},
+         broker: {type:"ccloud-broker", required:true}
+       },
+       color:"#FFFFFF",
+       inputs:1,
+       outputs:0,
+       icon: "ccloud.png",
+       align: "right",
+       label: function() {
+       return this.name||this.topic||"ccloud";
+       },
+       labelStyle: function() {
+       return this.name?"node_label_italic":"";
+       }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ccloud-broker">
+    <div class="form-row node-input-broker">
+        <label for="node-config-input-broker"><i class="icon-bookmark"></i> Endpoints</label>
+        <input class="input-append-left" type="text" id="node-config-input-broker" placeholder="SASL_SSL://confluent.aws.confluent.cloud:9092" >
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-apikey"><i class="icon-tag"></i> API Key</label>
+        <input type="text" id="node-config-input-apikey">
+    </div>   
+    <div class="form-row">
+        <label for="node-config-input-apisecret"><i class="icon-tag"></i> API Secret</label>
+        <input type="text" id="node-config-input-apisecret">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-sslcaloc"><i class="icon-tag"></i> SSL CA Location</label>
+        <input type="text" id="node-config-input-sslcaloc">
+    </div>    
+    <div class="form-row">
+        <label for="node-config-input-clientid"><i class="icon-tag"></i> Client ID</label>
+        <input type="text" id="node-config-input-clientid" placeholder="Leave blank for auto generated">
+    </div>
+    <div class="form-tips">
+        <b>Note:</b>Endpoints, API Key, and API Secret will be provided to you from Confluent as part of your setup instructions. The Endpoints are a list of Confluent Cloud Kafka brokers in the form SASL_SSL://HOST1:PORT1[,HOST2:PORT2[...]]
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ccloud-broker', {
+        category: 'config',
+        defaults: {
+            broker: { value:"",required:true },
+            clientid: { value:"" }
+        },
+        credentials: {
+            apikey: { type: "password" },
+            apisecret: { type: "password" },
+            sslcaloc: { type: "text" }
+        },
+        label: function() {
+            if (this.broker == "") { this.broker = "localhost:9092"; }
+            return (this.clientid?this.clientid+"@":"")+this.broker;
+        }
+    });
+</script>
+
