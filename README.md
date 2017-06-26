@@ -4,7 +4,7 @@ node-red-contrib-ccloud
 Node-RED (http://nodered.org) nodes for publish/subscribe messaging using the Confluent Cloud Apache Kafka as a service offering.
 
 
-#Install
+# Install
 
 Run the following command in the root directory of your Node-RED install
 
@@ -39,10 +39,10 @@ Publish and subscribe just as you would with the mqtt node with some small diffe
 	<li>ensure you have unique Group IDs configured unless you want multiple consumers to be in a Kafka consumer group
 </ul>
 
-#Author
+# Author
 
 Hans Jespersen, https://github.com/hjespers
 
-#Feedback and Support
+# Feedback and Support
 
 For more information, feedback, or support see https://github.com/confluentinc/node-red-contrib-ccloud/issues
