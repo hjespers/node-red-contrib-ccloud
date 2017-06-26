@@ -44,4 +44,4 @@ Hans Jespersen, https://github.com/hjespers
 
 #Feedback and Support
 
-For more information, feedback, or support see https://github.com/hjespers/node-red-contrib-ccloud/issues
+For more information, feedback, or support see https://github.com/confluentinc/node-red-contrib-ccloud/issues

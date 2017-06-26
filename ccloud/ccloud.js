@@ -187,17 +187,19 @@ module.exports = function(RED) {
                 //handle different payload types including JSON object
                 var partition, key, topic, value, timestamp;
                 //set the partition  
-                if (Number.isInteger(this.partition) && this.partition >= 0){
+                if (this.partition && Number.isInteger(this.partition) && this.partition >= 0){
                     partition = this.partition;
-                } else if(Number.isInteger(msg.partition) && Number(msg.partition) >= 0) {
+                } else if(msg.partition && Number.isInteger(msg.partition) && Number(msg.partition) >= 0) {
                     partition = Number(msg.partition);
                 } else {
                     partition = -1;
                 }
                 //set the key
-                if ((typeof this.key === 'string') && this.key !== "") {
+                //if ((typeof this.key === 'string') && this.key !== "") {
+                if ( this.key ) {
                     key = this.key;
-                } else if ((typeof msg.key === 'string') && msg.key !== "") {
+                //} else if ((typeof msg.key === 'string') && msg.key !== "") {
+                } else if ( msg.key ) {
                     key = msg.key;
                 } else {
                     key = null;
