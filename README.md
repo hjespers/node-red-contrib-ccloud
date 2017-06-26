@@ -1,4 +1,5 @@
-#node-red-contrib-ccloud
+node-red-contrib-ccloud
+========================
 
 Node-RED (http://nodered.org) nodes for publish/subscribe messaging using the Confluent Cloud Apache Kafka as a service offering.
 
