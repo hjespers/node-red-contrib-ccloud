@@ -116,10 +116,10 @@
     <div class="form-row">
         <label for="node-config-input-apisecret"><i class="icon-tag"></i> API Secret</label>
         <input type="text" id="node-config-input-apisecret">
-    </div>
     <div class="form-row">
-        <label for="node-config-input-sslcaloc"><i class="icon-tag"></i> SSL CA Location</label>
-        <input type="text" id="node-config-input-sslcaloc">
+        <label for="node-config-input-sslcaloc"><i class="icon-tag"></i> SSL CA</label>
+        <input type="text" id="node-config-input-sslcaloc" placeholder="/usr/local/etc/openssl/cert.pem">
+    </div>
     </div>    
     <div class="form-row">
         <label for="node-config-input-clientid"><i class="icon-tag"></i> Client ID</label>
@@ -127,6 +127,7 @@
     </div>
     <div class="form-tips">
         <b>Note:</b>Endpoints, API Key, and API Secret will be provided to you from Confluent as part of your setup instructions. The Endpoints are a list of Confluent Cloud Kafka brokers in the form SASL_SSL://HOST1:PORT1[,HOST2:PORT2[...]]
+        <p> SSL CA Location on macOS is /usr/local/etc/openssl/cert.pem
     </div>
 </script>
 
