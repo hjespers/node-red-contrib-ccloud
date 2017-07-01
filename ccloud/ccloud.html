@@ -125,8 +125,14 @@
         <input type="text" id="node-config-input-clientid" placeholder="Leave blank for auto generated">
     </div>
     <div class="form-tips">
-        <b>Note:</b>Endpoints, API Key, and API Secret will be provided to you from Confluent as part of your setup instructions. The Endpoints are a list of Confluent Cloud Kafka brokers in the form SASL_SSL://HOST1:PORT1[,HOST2:PORT2[...]]
-        <p> SSL CA Location on macOS is /usr/local/etc/openssl/cert.pem
+        <b>Note:</b>Endpoints, API Key, and API Secret will be provided to you from Confluent as part of your setup instructions. The Endpoints are a list of Confluent Cloud Kafka brokers in the form SASL_SSL://HOST1:PORT1[,HOST2:PORT2[...]] and API Key and API Secret are your username and password.
+        <p>
+        SSL CA Locations:
+        <ul>
+          <li>Ubuntu: /etc/ssl/certs</li>
+          <li>CentOS/RedHat: /etc/pki/tls/cert.pem</li>
+          <li>macOS: /usr/local/etc/openssl/cert.pem</li>
+        </ul>
     </div>
 </script>
 

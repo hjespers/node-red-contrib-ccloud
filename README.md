@@ -102,7 +102,7 @@ If you see the following error when you run either console producer or consumer,
 The default SSL Certificate location is `/usr/local/etc/openssl/cert.pem`  which works on macOS, if you follow the install instructions, but every flavor of Linux puts root certificates in different places. Make sure to configure the SSL CA Location as follows for your target platform:
 
 	Ubuntu: /etc/ssl/certs
-	RedHat: /etc/pki/tls/cert.pem
+	CentOS/RedHat: /etc/pki/tls/cert.pem
 	macOS: /usr/local/etc/openssl/cert.pem (from `brew install openssl`)
 
 
