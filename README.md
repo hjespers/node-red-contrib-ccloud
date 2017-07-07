@@ -8,7 +8,7 @@ Node-RED (http://nodered.org) nodes for publish/subscribe messaging using the Co
 * Up to date support for Confluent Cloud - Apache Kafka as a Service (see https://www.confluent.io/confluent-cloud/)
 * High performance through use of librdkafka C/C++ library ( see https://github.com/edenhill/librdkafka) 
 * Up to date feature set from use of node-rdkafka node.js client (see https://github.com/Blizzard/node-rdkafka)
-* Tested on Linux, macOS, and (coming soon) Raspberry Pi / Raspbian Jessie
+* Tested on Linux (Ubuntu and Centos), macOS, and Raspberry Pi (Raspbian Jessie)
 * Supports dynamic topic selection via incoming msg.topic value
 * Supports dynamic partition selection via incoming msg.partition value
 * Supports event time timestamps (with Kafka 0.10+) via msg/timestamp value
@@ -101,7 +101,7 @@ If you see the following error when you run either console producer or consumer,
 	
 The default SSL Certificate location is `/usr/local/etc/openssl/cert.pem`  which works on macOS, if you follow the install instructions, but every flavor of Linux puts root certificates in different places. Make sure to configure the SSL CA Location as follows for your target platform:
 
-	Ubuntu: /etc/ssl/certs
+	Ubuntu/Debian/Raspbian: /etc/ssl/certs
 	CentOS/RedHat: /etc/pki/tls/cert.pem
 	macOS: /usr/local/etc/openssl/cert.pem (from `brew install openssl`)
 
