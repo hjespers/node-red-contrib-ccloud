@@ -36,7 +36,7 @@ macOS dependencies
 
 Node.JS and Node-Red must already be installed ( see http://nodered.org/docs/getting-started/installation.html)
 
-Install node-red-contrib-ccloud from sources on macOS
+Install node-red-contrib-ccloud from github sources on macOS
 	
 	brew install openssl
 	export CPPFLAGS=-I/usr/local/opt/openssl/include
@@ -44,16 +44,16 @@ Install node-red-contrib-ccloud from sources on macOS
 	cd /tmp	
 	git clone git@github.com:confluentinc/node-red-contrib-ccloud.git
 	cd ~/.node-red	
-	npm install /tmp/node-red-contrib-ccloud
+	sudo -E npm install /tmp/node-red-contrib-ccloud
 
 
-Install using npm (*not yet published*)
+Install node-red-contrib-ccloud from npm on macOS
 
 	brew install openssl
 	export CPPFLAGS=-I/usr/local/opt/openssl/include
 	export LDFLAGS=-L/usr/local/opt/openssl/lib
 	cd ~/.node-red
-	npm install node-red-contrib-ccloud
+	sudo -E npm install node-red-contrib-ccloud
 
 Install node-red-contrib-ccloud from source on Ubuntu
 
@@ -95,11 +95,11 @@ Publish and subscribe just as you would with the mqtt node with some small diffe
 
 # Troubleshooting
 
-If you see the following error when you run either console producer or consumer, it means you have not installed librdkafka correctly with the required SSL and SASL libraries. See install instructions for installoing openssl and setting compiler flags.
+If you see the following error when you run a producer or consumer, it means you have not installed and linked librdkafka correctly with the required SSL and SASL libraries. See install instructions for installing openssl, setting compiler flags, and on MacOS adding the -E option to sudo so the environment variable are preserved.
 
 	Caught error: Error: Invalid value for configuration property "security.protocol"
 	
-The default SSL Certificate location is `/usr/local/etc/openssl/cert.pem`  which works on macOS, if you follow the install instructions, but every flavor of Linux puts root certificates in different places. Make sure to configure the SSL CA Location as follows for your target platform:
+The default SSL Certificate location is `/usr/local/etc/openssl/cert.pem` which works on macOS, if you follow the install instructions, but every flavor of Linux puts root certificates in different places. Make sure to configure the SSL CA Location as follows for your target platform:
 
 	Ubuntu/Debian/Raspbian: /etc/ssl/certs
 	CentOS/RedHat: /etc/pki/tls/cert.pem
