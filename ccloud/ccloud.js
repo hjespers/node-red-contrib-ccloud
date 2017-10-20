@@ -246,6 +246,11 @@ module.exports = function(RED) {
             this.error("[ccloud] missing broker configuration");
         }
         this.on('close', function() {
+            node.status({
+                fill: "red",
+                shape: "ring",
+                text: "disconnected"
+            });
             producer.disconnect();
         });
     }
