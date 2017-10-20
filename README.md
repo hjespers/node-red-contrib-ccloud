@@ -42,7 +42,7 @@ Install node-red-contrib-ccloud from github sources on macOS
 	export CPPFLAGS=-I/usr/local/opt/openssl/include
 	export LDFLAGS=-L/usr/local/opt/openssl/lib
 	cd /tmp	
-	git clone git@github.com:confluentinc/node-red-contrib-ccloud.git
+	git clone git@github.com:hjespers/node-red-contrib-ccloud.git
 	cd ~/.node-red	
 	sudo -E npm install /tmp/node-red-contrib-ccloud
 
@@ -60,7 +60,7 @@ Install node-red-contrib-ccloud from source on Ubuntu
 	sudo apt install nodejs-legacy
 	sudo apt install openssl libssl-dev libsasl2-dev libsasl2-modules
 	cd /tmp	
-	git clone git@github.com:confluentinc/node-red-contrib-ccloud.git
+	git clone git@github.com:hjespers/node-red-contrib-ccloud.git
 	cd ~/.node-red	
 	npm install /tmp/node-red-contrib-ccloud
 	
@@ -113,4 +113,4 @@ Hans Jespersen, https://github.com/hjespers
 
 # Feedback and Support
 
-For more information, feedback, or support see https://github.com/confluentinc/node-red-contrib-ccloud/issues
+For more information, feedback, or support see https://github.com/hjespers/node-red-contrib-ccloud/issues
