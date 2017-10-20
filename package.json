@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/confluentinc/node-red-contrib-ccloud.git"
+    "url": "git+https://github.com/hjespers/node-red-contrib-ccloud.git"
   },
   "author": "Hans Jespersen <hans@confluent.io> (https://github.com/hjespers)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/confluentinc/node-red-contrib-ccloud/issues"
+    "url": "https://github.com/hjespers/node-red-contrib-ccloud/issues"
   },
-  "homepage": "https://github.com/confluentinc/node-red-contrib-ccloud"
+  "homepage": "https://github.com/hjespers/node-red-contrib-ccloud"
 }
