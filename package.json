@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "description": "Node-Red module for Confluent Cloud",
   "dependencies": {
-    "node-rdkafka": "^2.1.1"
+    "node-rdkafka": ">=2.1.1"
   },
   "keywords": [
     "node-red",
